@@ -71,16 +71,11 @@ export default class TeleprompterPlugin extends Plugin {
     filepath?: string  
     placement?: 'sidebar' | 'tab' | 'window'
     pin?: boolean
-  }) {  
-    const { filepath, placement, pin } = params
+  }) {
 
-    if( typeof placement === 'undefined' ){
-      placement = 'window'
-    }
-
-    if( typeof pin === 'undefined' ){
-      pin = true
-    }
+    const filepath = params.filepath,
+      placement = typeof params.placement === 'undefined' ? 'window' : params.placement,
+      pin = typeof params.pin === 'undefined' ? true : params.pin
     
     if (filepath) {  
       const file =  
