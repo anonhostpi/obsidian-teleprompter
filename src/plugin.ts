@@ -67,6 +67,31 @@ export default class TeleprompterPlugin extends Plugin {
     if (content) useContentFeature().useStore().content = content
   }
 
+  async function openWithParams(params: {  
+    filepath?: string  
+    placement?: 'sidebar' | 'tab' | 'window' = 'window'
+    pin?: boolean  = true
+  }) {  
+    const { filepath, placement, pin } = params  
+    
+    if (filepath) {  
+      const file =  
+        app.vault.getFileByPath(filepath) ??  
+        app.vault.getFileByPath(`${filepath}.md`)  
+    
+      if (file) {  
+        useContentFeature().useStore().content = await app.vault.cachedRead(file)
+      } else {
+        console.error(`File not found: "${filepath}"`)  
+      }
+    }
+    
+    // src/utils/activateViewInObsidian/index.ts
+    activateViewInObsidian(VIEW_TYPE, app.workspace, placement)  
+    
+    if (pin !== undefined) usePinNoteFeature().useStore().value = pin
+  }
+
   async registerFeatures() {
     const debouncedSaveSettings = debounce(
       () => this.saveSettings(),
