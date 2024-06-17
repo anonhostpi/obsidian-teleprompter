@@ -67,7 +67,7 @@ export default class TeleprompterPlugin extends Plugin {
     if (content) useContentFeature().useStore().content = content
   }
 
-  async function openWithParams(params: {  
+  async openWithParams(params: {  
     filepath?: string  
     placement?: 'sidebar' | 'tab' | 'window' = 'window'
     pin?: boolean  = true
