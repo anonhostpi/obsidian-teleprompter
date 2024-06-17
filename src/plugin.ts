@@ -69,8 +69,8 @@ export default class TeleprompterPlugin extends Plugin {
 
   async openWithParams(params: {  
     filepath?: string  
-    placement?: 'sidebar' | 'tab' | 'window' = 'window'
-    pin?: boolean  = true
+    placement: 'sidebar' | 'tab' | 'window' = 'window'
+    pin: boolean  = true
   }) {  
     const { filepath, placement, pin } = params  
     
